@@ -1,70 +1,148 @@
-# Getting Started with Create React App
+# 🍿 SnackScan
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Snap, Scan, Snack Smart!**
 
-## Available Scripts
+SnackScan is a full-stack web application that helps you make healthier snack choices by scanning vending machines with your camera. The app uses AI-powered image recognition to detect snack products and provides comprehensive nutritional information to help you make informed decisions.
 
-In the project directory, you can run:
+## 🚀 Quick Start
 
-### `npm start`
+### Option 1: One-Click Startup (Windows)
+1. Double-click `start-full-app.bat` to start both frontend and backend
+2. Open your browser to http://localhost:3000
+3. Start scanning vending machines! 📸
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Option 2: Manual Setup
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### Prerequisites
+- **Python 3.8+** ([Download here](https://python.org))
+- **Node.js 16+** ([Download here](https://nodejs.org))
 
-### `npm test`
+#### Backend Setup
+```bash
+cd backend
+python -m venv venv
+venv\Scripts\activate          # Windows
+# or source venv/bin/activate  # macOS/Linux
+pip install -r requirements.txt
+python run.py
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Frontend Setup  
+```bash
+npm install
+npm start
+```
 
-### `npm run build`
+## 🏗️ Architecture
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**React Frontend** ↔ **Python Flask API** ↔ **External APIs (USDA, Google Vision)**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Frontend**: Modern React app with camera integration
+- **Backend**: Python Flask API with AI image recognition
+- **Database**: 50+ popular vending machine products with nutrition data
+- **APIs**: USDA FoodData Central, Edamam, Spoonacular, Google Vision
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🔧 Configuration
 
-### `npm run eject`
+### API Keys (Optional but Recommended)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **USDA FoodData Central** (Free) - [Get API Key](https://fdc.nal.usda.gov/api-guide.html)
+2. **Google Vision API** (Paid) - [Get API Key](https://cloud.google.com/vision/docs/setup)
+3. **Edamam Nutrition API** (Free tier) - [Sign Up](https://developer.edamam.com/)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Add your keys to `backend/.env`:
+```bash
+USDA_API_KEY=your-key-here
+GOOGLE_APPLICATION_CREDENTIALS=path/to/service-account.json
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Note**: The app works great without API keys using our comprehensive mock database!
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📱 Features
 
-## Learn More
+- 📸 **Camera Integration**: Scan vending machines with your webcam or mobile camera
+- 🤖 **AI Recognition**: Google Vision API + intelligent product detection
+- 📊 **Nutrition Data**: Real nutrition facts from USDA and other APIs
+- ⭐ **Health Scoring**: 1-10 health rating for each product
+- 📱 **Mobile Ready**: Responsive design works on all devices
+- 🔄 **Offline Mode**: Mock data ensures app works without internet
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🎯 How It Works
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. **Point & Scan**: Use your camera to capture a vending machine
+2. **AI Detection**: Our Python backend analyzes the image and detects products
+3. **Choose Product**: Select from the detected snacks and drinks
+4. **Get Nutrition**: View detailed nutrition facts and health scores
+5. **Make Smart Choices**: Use the information to pick healthier options!
 
-### Code Splitting
+## 🛠️ Development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Project Structure
+```
+SnackScan/
+├── src/                    # React frontend
+│   ├── components/         # React components
+│   └── services/          # API clients
+├── backend/               # Python Flask API
+│   ├── services/          # Core business logic
+│   ├── app.py            # Flask app
+│   └── requirements.txt   # Python dependencies
+├── start-full-app.bat    # One-click startup (Windows)
+└── CLAUDE.md            # Development guide
+```
 
-### Analyzing the Bundle Size
+### Available Commands
+```bash
+# Development
+npm start              # Start React frontend
+cd backend && python run.py  # Start Python backend
+npm run start:full     # Start both simultaneously
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Building
+npm run build          # Build React for production
 
-### Making a Progressive Web App
+# Backend Management
+npm run backend:install    # Install Python dependencies
+npm run backend:dev       # Start backend in dev mode
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🧪 Testing
 
-### Advanced Configuration
+- **Frontend**: Jest + React Testing Library (`npm test`)
+- **Backend**: pytest framework (`cd backend && pytest`)
+- **Manual Testing**: Use the included batch files for quick testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🌟 Sample Products Detected
 
-### Deployment
+The app recognizes 50+ popular vending machine items including:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+**Beverages**: Coca-Cola, Pepsi, Mountain Dew, Sprite, Dasani Water, Gatorade  
+**Candy**: Snickers, M&Ms, Reese's Cups, Kit Kat, Twix, Skittles  
+**Chips**: Lays, Doritos, Cheetos, Pringles, Sun Chips  
+**Healthy**: Granola bars, nuts, energy bars, bottled water  
 
-### `npm run build` fails to minify
+## 📊 Nutrition Data Sources
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. **USDA FoodData Central** - Comprehensive, government database
+2. **Edamam Nutrition API** - Excellent for branded products  
+3. **Spoonacular API** - Premium nutrition data
+4. **Enhanced Mock Database** - 200+ products with accurate nutrition facts
+
+## 🤝 Contributing
+
+This is a demo project showcasing full-stack development with React and Python. Feel free to:
+
+- Add new vending machine products to the database
+- Improve image recognition accuracy
+- Add new nutrition APIs
+- Enhance the UI/UX
+
+## 📄 License
+
+This project is for educational and demonstration purposes.
+
+---
+
+**Made with ❤️ using React + Python Flask**
+
+Start making smarter snack choices today! 🥗✨
